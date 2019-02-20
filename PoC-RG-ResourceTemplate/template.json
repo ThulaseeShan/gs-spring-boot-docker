@@ -1,0 +1,3362 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "connections_Dialog_Azure_PoC_VPN_Connection_location": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "connections_Dialog_Azure_PoC_VPN_Connection_location_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "networkSecurityGroups_cg_dev_ILB_NSG_destinationPortRange": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "securityRules_Inbount_HTTPS_destinationPortRange": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "sites_dev_name": {
+            "defaultValue": "dev",
+            "type": "String"
+        },
+        "config_web_name": {
+            "defaultValue": "web",
+            "type": "String"
+        },
+        "serverfarms_cg_dev_plan_name": {
+            "defaultValue": "cg-dev-plan",
+            "type": "String"
+        },
+        "hostingEnvironments_cg_dev_ILB_name": {
+            "defaultValue": "cg-dev-ILB",
+            "type": "String"
+        },
+        "storageAccounts_commonodiag_name": {
+            "defaultValue": "commonodiag",
+            "type": "String"
+        },
+        "virtualNetworks_Common_PoC_VN_name": {
+            "defaultValue": "Common-PoC-VN",
+            "type": "String"
+        },
+        "workspaces_cg_trial_name": {
+            "defaultValue": "cg-trial",
+            "type": "String"
+        },
+        "virtualMachines_Riverbed_PoC_VM_01_name": {
+            "defaultValue": "Riverbed-PoC-VM-01",
+            "type": "String"
+        },
+        "routeTables_cg_dev_ILB_Route_Table_name": {
+            "defaultValue": "cg-dev-ILB-Route-Table",
+            "type": "String"
+        },
+        "networkSecurityGroups_cg_dev_ILB_NSG_name": {
+            "defaultValue": "cg-dev-ILB-NSG",
+            "type": "String"
+        },
+        "hostNameBindings_dev.dialog_cg_name": {
+            "defaultValue": "dev.dialog-cg",
+            "type": "String"
+        },
+        "publicIPAddresses_Common_PoC_VNGW_PIP_name": {
+            "defaultValue": "Common-PoC-VNGW-PIP",
+            "type": "String"
+        },
+        "virtualNetworkGateways_Common_PoC_VNGW_name": {
+            "defaultValue": "Common-PoC-VNGW",
+            "type": "String"
+        },
+        "networkInterfaces_riverbed_poc_vm_01894_name": {
+            "defaultValue": "riverbed-poc-vm-01894",
+            "type": "String"
+        },
+        "publicIPAddresses_Riverbed_PoC_VM_01_PIP_name": {
+            "defaultValue": "Riverbed-PoC-VM-01-PIP",
+            "type": "String"
+        },
+        "subnets_CG_name": {
+            "defaultValue": "CG",
+            "type": "String"
+        },
+        "connections_Dialog_Azure_PoC_VPN_Connection_name": {
+            "defaultValue": "Dialog-Azure-PoC-VPN-Connection",
+            "type": "String"
+        },
+        "localNetworkGateways_Dialog_Common_PoC_LNGW_name": {
+            "defaultValue": "Dialog-Common-PoC-LNGW",
+            "type": "String"
+        },
+        "networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name": {
+            "defaultValue": "Riverbed-PoC-VM-01-NSG",
+            "type": "String"
+        },
+        "subnets_Servers_name": {
+            "defaultValue": "Servers",
+            "type": "String"
+        },
+        "subnets_Riverbed_name": {
+            "defaultValue": "Riverbed",
+            "type": "String"
+        },
+        "multiRolePools_default_name": {
+            "defaultValue": "default",
+            "type": "String"
+        },
+        "schedules_shutdown_computevm_riverbed_poc_vm_01_name": {
+            "defaultValue": "shutdown-computevm-riverbed-poc-vm-01",
+            "type": "String"
+        },
+        "subnets_GatewaySubnet_name": {
+            "defaultValue": "GatewaySubnet",
+            "type": "String"
+        },
+        "routes_cg_dev_ILB_route_name": {
+            "defaultValue": "cg-dev-ILB-route",
+            "type": "String"
+        },
+        "securityRules_Inbound_FTP_name": {
+            "defaultValue": "Inbound-FTP",
+            "type": "String"
+        },
+        "securityRules_Outbound_DB_name": {
+            "defaultValue": "Outbound-DB",
+            "type": "String"
+        },
+        "securityRules_Outbound_80_name": {
+            "defaultValue": "Outbound-80",
+            "type": "String"
+        },
+        "securityRules_ASE_to_VNET_name": {
+            "defaultValue": "ASE-to-VNET",
+            "type": "String"
+        },
+        "securityRules_Inbound_HTTP_name": {
+            "defaultValue": "Inbound-HTTP",
+            "type": "String"
+        },
+        "securityRules_Inbound_FTPS_name": {
+            "defaultValue": "Inbound-FTPS",
+            "type": "String"
+        },
+        "securityRules_Outbound_443_name": {
+            "defaultValue": "Outbound-443",
+            "type": "String"
+        },
+        "securityRules_Outbound_SMB_name": {
+            "defaultValue": "Outbound-SMB",
+            "type": "String"
+        },
+        "securityRules_Outbound_DB2_name": {
+            "defaultValue": "Outbound-DB2",
+            "type": "String"
+        },
+        "securityRules_Outbound_DB3_name": {
+            "defaultValue": "Outbound-DB3",
+            "type": "String"
+        },
+        "securityRules_Outbound_DNS_name": {
+            "defaultValue": "Outbound-DNS",
+            "type": "String"
+        },
+        "securityRules_http_name": {
+            "defaultValue": "http",
+            "type": "String"
+        },
+        "securityRules_Inbount_HTTPS_name": {
+            "defaultValue": "Inbount-HTTPS",
+            "type": "String"
+        },
+        "securityRules_https_name": {
+            "defaultValue": "https",
+            "type": "String"
+        },
+        "securityRules_rvbd1_name": {
+            "defaultValue": "rvbd1",
+            "type": "String"
+        },
+        "securityRules_rvbd2_name": {
+            "defaultValue": "rvbd2",
+            "type": "String"
+        },
+        "securityRules_rvbd3_name": {
+            "defaultValue": "rvbd3",
+            "type": "String"
+        },
+        "securityRules_rvbd4_name": {
+            "defaultValue": "rvbd4",
+            "type": "String"
+        },
+        "securityRules_Inbound_FTP_Data_name": {
+            "defaultValue": "Inbound-FTP-Data",
+            "type": "String"
+        },
+        "securityRules_Inbound_management_name": {
+            "defaultValue": "Inbound-management",
+            "type": "String"
+        },
+        "securityRules_ASE_internal_inbound_name": {
+            "defaultValue": "ASE-internal-inbound",
+            "type": "String"
+        },
+        "securityRules_ASE_internal_outbound_name": {
+            "defaultValue": "ASE-internal-outbound",
+            "type": "String"
+        },
+        "securityRules_Allow_Port_22_name": {
+            "defaultValue": "Allow_Port_22",
+            "type": "String"
+        },
+        "virtualNetworkPeerings_Spoke_CG_PoC_Peering_name": {
+            "defaultValue": "Spoke-CG-PoC-Peering",
+            "type": "String"
+        },
+        "securityRules_Inbound_Remote_Debugging_name": {
+            "defaultValue": "Inbound-Remote-Debugging",
+            "type": "String"
+        },
+        "virtualNetworkPeerings_Spoke_OneCRM_PoC_Peering_name": {
+            "defaultValue": "Spoke-OneCRM-PoC-Peering",
+            "type": "String"
+        },
+        "certificates_044903D3F0AC9D826830D51EB69CEFA1024D0B14_cg_dev_ILB_InternalLoadBalancingASE_name": {
+            "defaultValue": "044903D3F0AC9D826830D51EB69CEFA1024D0B14_cg-dev-ILB_InternalLoadBalancingASE",
+            "type": "String"
+        },
+        "certificates_44F81D3B4AA83EA83B381D9CD13A40D0FD690AF9_cg_dev_ILB_InternalLoadBalancingASE_name": {
+            "defaultValue": "44F81D3B4AA83EA83B381D9CD13A40D0FD690AF9_cg-dev-ILB_InternalLoadBalancingASE",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_General|StaleComputers_name": {
+            "defaultValue": "LogManagement(cg-trial)_General|StaleComputers",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllEvents_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AllEvents",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslog_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AllSyslog",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|WarningEvents_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|WarningEvents",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_General|dataTypeDistribution_name": {
+            "defaultValue": "LogManagement(cg-trial)_General|dataTypeDistribution",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventLog_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|EventsByEventLog",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventsID_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|EventsByEventsID",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|Show404PagesList_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|Show404PagesList",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|ServerRestartTime_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|ServerRestartTime",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventSource_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|EventsByEventSource",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogByFacility_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AllSyslogByFacility",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfWarningEvents_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountOfWarningEvents",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|ListAllIISLogEntries_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|ListAllIISLogEntries",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogsWithErrors_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AllSyslogsWithErrors",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogByProcessName_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AllSyslogByProcessName",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_General|dataPointsPerManagementGroup_name": {
+            "defaultValue": "LogManagement(cg-trial)_General|dataPointsPerManagementGroup",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_General|AlphabeticallySortedComputers_name": {
+            "defaultValue": "LogManagement(cg-trial)_General|AlphabeticallySortedComputers",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|IISLogEntriesForClientIP_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|IISLogEntriesForClientIP",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsWithStartedinEventID_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|EventsWithStartedinEventID",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsInOMBetween2000to3000_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|EventsInOMBetween2000to3000",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|DisplayBreakdownRespondCodes_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|DisplayBreakdownRespondCodes",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|NoOfConnectionsToOMSDKService_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|NoOfConnectionsToOMSDKService",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|FindMaximumTimeTakenForEachPage_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|FindMaximumTimeTakenForEachPage",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesHTTPUserAgent_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountIISLogEntriesHTTPUserAgent",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesSentByClientIPAddress_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|TotalBytesSentByClientIPAddress",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AverageHTTPRequestTimeHTTPMethod_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AverageHTTPRequestTimeHTTPMethod",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByURLForHost_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountOfIISLogEntriesByURLForHost",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesClientIPAddress_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountIISLogEntriesClientIPAddress",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesHTTPRequestMethod_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountIISLogEntriesHTTPRequestMethod",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesReceivedByEachIISComputer_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|TotalBytesReceivedByEachIISComputer",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|WindowsFireawallPolicySettingsChanged_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|WindowsFireawallPolicySettingsChanged",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|ShowServersThrowingInternalServerError_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|ShowServersThrowingInternalServerError",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AverageHTTPRequestTimeByClientIPAddress_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|AverageHTTPRequestTimeByClientIPAddress",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines",
+            "type": "String"
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress_name": {
+            "defaultValue": "LogManagement(cg-trial)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress",
+            "type": "String"
+        },
+        "virtualMachines_Riverbed_PoC_VM_01_id": {
+            "defaultValue": "/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/COMMON-POC-RG/providers/Microsoft.Compute/disks/Riverbed-PoC-VM-01_OsDisk_1_4770af8fbe574085a7625e60b6f2b4ed",
+            "type": "String"
+        },
+        "virtualMachines_Riverbed_PoC_VM_01_id_1": {
+            "defaultValue": "/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Compute/disks/Riverbed-PoC-VM-01_DataDisk_0",
+            "type": "String"
+        },
+        "virtualNetworks_Common_PoC_VN_id": {
+            "defaultValue": "/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/CG-PoC-RG/providers/Microsoft.Network/virtualNetworks/CG-PoC-VN",
+            "type": "String"
+        },
+        "virtualNetworks_Common_PoC_VN_id_1": {
+            "defaultValue": "/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/OneCRM-PoC-RG/providers/Microsoft.Network/virtualNetworks/OneCRM-PoC-VN",
+            "type": "String"
+        },
+        "virtualNetworkPeerings_Spoke_CG_PoC_Peering_id": {
+            "defaultValue": "/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/CG-PoC-RG/providers/Microsoft.Network/virtualNetworks/CG-PoC-VN",
+            "type": "String"
+        },
+        "virtualNetworkPeerings_Spoke_OneCRM_PoC_Peering_id": {
+            "defaultValue": "/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/OneCRM-PoC-RG/providers/Microsoft.Network/virtualNetworks/OneCRM-PoC-VN",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Compute/virtualMachines/Riverbed-PoC-VM-01'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_Riverbed_PoC_VM_01_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "plan": {
+                "name": "riverbed-steelhead-9-6-0",
+                "product": "riverbed-steelhead-9-6-0",
+                "publisher": "riverbed"
+            },
+            "tags": {
+                "Application": "Riverbed Steelhead CX 9.6.0",
+                "Created By": "Tharindu Nanayakkara- MIT",
+                "Created Date and Time": "17/10/2018 03:33 PM",
+                "Owner": "Jeffrey Perera",
+                "Project": "Azure PoC"
+            },
+            "scale": null,
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_F4s_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "riverbed",
+                        "offer": "riverbed-steelhead-9-6-0",
+                        "sku": "riverbed-steelhead-9-6-0",
+                        "version": "1.1.0"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_Riverbed_PoC_VM_01_name'),'_OsDisk_1_4770af8fbe574085a7625e60b6f2b4ed')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('virtualMachines_Riverbed_PoC_VM_01_id')]"
+                        },
+                        "diskSizeGB": 38
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_Riverbed_PoC_VM_01_name'),'_DataDisk_0')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('virtualMachines_Riverbed_PoC_VM_01_id_1')]"
+                            },
+                            "diskSizeGB": 511
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_Riverbed_PoC_VM_01_name')]",
+                    "adminUsername": "azureadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_riverbed_poc_vm_01894_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('https', '://', parameters('storageAccounts_commonodiag_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_riverbed_poc_vm_01894_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_commonodiag_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourcegroups/common-poc-rg/providers/microsoft.devtestlab/schedules/shutdown-computevm-riverbed-poc-vm-01'.",
+            "type": "microsoft.devtestlab/schedules",
+            "name": "[parameters('schedules_shutdown_computevm_riverbed_poc_vm_01_name')]",
+            "apiVersion": "2016-05-15",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "status": "Disabled",
+                "taskType": "ComputeVmShutdownTask",
+                "dailyRecurrence": {
+                    "time": "1900"
+                },
+                "timeZoneId": "Sri Lanka Standard Time",
+                "notificationSettings": {
+                    "status": "Enabled",
+                    "timeInMinutes": 30,
+                    "webhookUrl": ""
+                },
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_Riverbed_PoC_VM_01_name'))]",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "e2edc714-46b4-462f-a4e2-3b03847dccfb"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_Riverbed_PoC_VM_01_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/connections/Dialog-Azure-PoC-VPN-Connection'.",
+            "type": "Microsoft.Network/connections",
+            "name": "[parameters('connections_Dialog_Azure_PoC_VPN_Connection_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "resourceGuid": "728ff9fd-3e70-405b-8b80-ad3312dd391f",
+                "virtualNetworkGateway1": {
+                    "location": "[parameters('connections_Dialog_Azure_PoC_VPN_Connection_location')]",
+                    "properties": {}
+                },
+                "localNetworkGateway2": {
+                    "location": "[parameters('connections_Dialog_Azure_PoC_VPN_Connection_location_1')]",
+                    "properties": {}
+                },
+                "connectionType": "IPsec",
+                "connectionProtocol": "IKEv1",
+                "routingWeight": 0,
+                "enableBgp": false,
+                "usePolicyBasedTrafficSelectors": false,
+                "ipsecPolicies": [],
+                "expressRouteGatewayBypass": false
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/localNetworkGateways/Dialog-Common-PoC-LNGW'.",
+            "type": "Microsoft.Network/localNetworkGateways",
+            "name": "[parameters('localNetworkGateways_Dialog_Common_PoC_LNGW_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "resourceGuid": "60ba5d6f-9c81-4e32-b5e3-8341b18d5f40",
+                "localNetworkAddressSpace": {
+                    "addressPrefixes": [
+                        "172.26.30.81/32",
+                        "172.26.30.82/32",
+                        "172.26.30.84/32",
+                        "172.26.30.23/32",
+                        "172.26.75.75/32",
+                        "172.26.83.106/32",
+                        "172.26.28.100/32",
+                        "172.26.84.135/32",
+                        "192.168.71.224/32",
+                        "192.168.71.225/32",
+                        "10.56.176.168/32",
+                        "172.26.29.10/32",
+                        "172.26.29.29/32",
+                        "172.26.29.184/32",
+                        "172.26.30.38/32",
+                        "172.26.30.90/32",
+                        "172.26.75.51/32",
+                        "172.26.75.72/32",
+                        "172.26.75.76/32",
+                        "172.75.76.29/32",
+                        "172.26.85.7/32",
+                        "172.26.86.19/32",
+                        "172.26.86.24/32",
+                        "172.26.88.148/32",
+                        "10.62.160.161/32",
+                        "10.62.128.105/32",
+                        "172.26.86.45/32",
+                        "172.22.25.40/32",
+                        "172.22.170.72/32",
+                        "172.22.97.194/32",
+                        "172.23.5.12/32",
+                        "172.26.232.23/32",
+                        "172.26.33.240/32"
+                    ]
+                },
+                "gatewayIpAddress": "202.69.204.244"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkInterfaces/riverbed-poc-vm-01894'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_riverbed_poc_vm_01894_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "tags": {
+                "Application": "Riverbed Steelhead CX 9.6.0",
+                "Created By": "Tharindu Nanayakkara- MIT",
+                "Created Date and Time": "17/10/2018 03:33 PM",
+                "Owner": "Jeffrey Perera",
+                "Project": "Azure PoC"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "bf3ce51b-b69d-42d2-b883-1137aabe3688",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"df49c63f-4166-4cfb-b182-a097e33553f5\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "192.168.255.101",
+                            "privateIPAllocationMethod": "Static",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Riverbed_PoC_VM_01_PIP_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_Common_PoC_VN_name'), parameters('subnets_Riverbed_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "zhyqqtxfqxtunjcsrfm3atgkqb.ix.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-A0-21-E6",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Riverbed_PoC_VM_01_PIP_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_Common_PoC_VN_name'), parameters('subnets_Riverbed_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_cg_dev_ILB_NSG_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "tags": {
+                "displayName": "NSG - Subnet"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "03119666-e782-4f2f-bf69-971c9e878c7c",
+                "securityRules": [
+                    {
+                        "name": "Inbound-management",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Used to manage ASE from public VIP",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "454-455",
+                            "sourceAddressPrefix": "AppServiceManagement",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "ASE-internal-inbound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "ASE-internal-inbound",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "192.168.250.0/24",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Inbound-HTTP",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow HTTP",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "8080",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 120,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Inbount-HTTPS",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow HTTPS",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 130,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [
+                                "443",
+                                "8080"
+                            ],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": [],
+                            "destinationPortRange": "[parameters('networkSecurityGroups_cg_dev_ILB_NSG_destinationPortRange')]"
+                        }
+                    },
+                    {
+                        "name": "Inbound-FTP",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow FTP over port 21",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "21",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 140,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Inbound-FTPS",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow FTPS",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "990",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 150,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Inbound-FTP-Data",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "RDP",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "10001-10020",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 160,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Inbound-Remote-Debugging",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Visual Studio remote debugging",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "4016-4022",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 170,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-443",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Azure Storage blob",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-SMB",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Azure Storage queue",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "445",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-DB",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Database",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "1433",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 120,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-DB2",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Database 2",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "11000-11999",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 130,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-DB3",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Database 3",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "14000-14999",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 140,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-DNS",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "DNS",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "53",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 150,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "ASE-internal-outbound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Azure Storage queue",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "192.168.250.0/24",
+                            "access": "Allow",
+                            "priority": 160,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Outbound-80",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Outbound 80",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "8080",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 170,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "ASE-to-VNET",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "ASE to VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "192.168.250.0/23",
+                            "access": "Allow",
+                            "priority": 180,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"67d3b974-1177-4a32-a9db-1d076dfb578c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "tags": {
+                "Application": "Riverbed Steelhead CX 9.6.0",
+                "Created By": "Tharindu Nanayakkara- MIT",
+                "Created Date and Time": "17/10/2018 03:33 PM",
+                "Owner": "Jeffrey Perera",
+                "Project": "Azure PoC"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "b7715028-6b44-4393-bb26-78a1acd9e8e6",
+                "securityRules": [
+                    {
+                        "name": "http",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1010,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "https",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1020,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "rvbd1",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "7800",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1030,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "rvbd2",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "7810",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1040,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "rvbd3",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "7850",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1050,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "rvbd4",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "UDP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "7801",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1060,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Allow_Port_22",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1070,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"b0d7baa5-161c-4726-9fa6-b53d4010fdf0\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/publicIPAddresses/Common-PoC-VNGW-PIP'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('publicIPAddresses_Common_PoC_VNGW_PIP_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "fe4ce7a4-8aa3-4b3c-96eb-0a7c558ae6f8",
+                "ipAddress": "104.215.197.230",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/publicIPAddresses/Riverbed-PoC-VM-01-PIP'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('publicIPAddresses_Riverbed_PoC_VM_01_PIP_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "tags": {
+                "Application": "Riverbed Steelhead CX 9.6.0",
+                "Created By": "Tharindu Nanayakkara- MIT",
+                "Created Date and Time": "17/10/2018 03:33 PM",
+                "Owner": "Jeffrey Perera",
+                "Project": "Azure PoC"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "603d58fa-706a-4c52-a86d-18bf742df522",
+                "ipAddress": "13.76.198.212",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/routeTables/cg-dev-ILB-Route-Table'.",
+            "type": "Microsoft.Network/routeTables",
+            "name": "[parameters('routeTables_cg_dev_ILB_Route_Table_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "tags": {
+                "displayName": "UDR - Subnet"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "disableBgpRoutePropagation": false,
+                "routes": [
+                    {
+                        "name": "cg-dev-ILB-route",
+                        "etag": "W/\"895505aa-9cf7-4042-bd74-8411cde21672\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "0.0.0.0/0",
+                            "nextHopType": "Internet"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworkGateways/Common-PoC-VNGW'.",
+            "type": "Microsoft.Network/virtualNetworkGateways",
+            "name": "[parameters('virtualNetworkGateways_Common_PoC_VNGW_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "resourceGuid": "21b769ca-4bfd-4a1d-b28d-ef3302b400a9",
+                "ipConfigurations": [
+                    {
+                        "name": "default",
+                        "etag": "W/\"29ce7a57-edc7-4eec-ba40-6e45e55fe6a3\"",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Common_PoC_VNGW_PIP_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_Common_PoC_VN_name'), parameters('subnets_GatewaySubnet_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "sku": {
+                    "name": "Basic",
+                    "tier": "Basic",
+                    "capacity": 2
+                },
+                "gatewayType": "Vpn",
+                "vpnType": "PolicyBased",
+                "enableBgp": false,
+                "activeActive": false,
+                "vpnClientConfiguration": {
+                    "vpnClientProtocols": [
+                        "SSTP"
+                    ],
+                    "vpnClientRootCertificates": [],
+                    "vpnClientRevokedCertificates": [],
+                    "vpnClientIpsecPolicies": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Common_PoC_VNGW_PIP_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_Common_PoC_VN_name'), parameters('subnets_GatewaySubnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_Common_PoC_VN_name')]",
+            "apiVersion": "2018-10-01",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "4e08f1c9-85e5-46e7-a452-8959d04cca81",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "192.168.255.0/25"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Servers",
+                        "etag": "W/\"4775d1c1-83ae-4ae4-820c-9591e035b586\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "192.168.255.0/26",
+                            "delegations": []
+                        }
+                    },
+                    {
+                        "name": "GatewaySubnet",
+                        "etag": "W/\"4775d1c1-83ae-4ae4-820c-9591e035b586\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "192.168.255.112/28",
+                            "serviceEndpoints": [],
+                            "delegations": []
+                        }
+                    },
+                    {
+                        "name": "Riverbed",
+                        "etag": "W/\"4775d1c1-83ae-4ae4-820c-9591e035b586\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "192.168.255.96/28",
+                            "serviceEndpoints": [],
+                            "delegations": []
+                        }
+                    },
+                    {
+                        "name": "CG",
+                        "etag": "W/\"4775d1c1-83ae-4ae4-820c-9591e035b586\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "192.168.255.80/28",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+                            },
+                            "routeTable": {
+                                "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_cg_dev_ILB_Route_Table_name'))]"
+                            },
+                            "resourceNavigationLinks": [
+                                {
+                                    "name": "MicrosoftWeb_HostingEnvironments_cg-dev-ILB",
+                                    "properties": {
+                                        "linkedResourceType": "Microsoft.Web/hostingEnvironments",
+                                        "link": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+                                    }
+                                }
+                            ],
+                            "delegations": []
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": [
+                    {
+                        "name": "Spoke-CG-PoC-Peering",
+                        "etag": "W/\"4775d1c1-83ae-4ae4-820c-9591e035b586\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "peeringState": "Connected",
+                            "remoteVirtualNetwork": {
+                                "id": "[parameters('virtualNetworks_Common_PoC_VN_id')]"
+                            },
+                            "allowVirtualNetworkAccess": true,
+                            "allowForwardedTraffic": false,
+                            "allowGatewayTransit": true,
+                            "useRemoteGateways": false,
+                            "remoteAddressSpace": {
+                                "addressPrefixes": [
+                                    "192.168.255.128/26"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "Spoke-OneCRM-PoC-Peering",
+                        "etag": "W/\"4775d1c1-83ae-4ae4-820c-9591e035b586\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "peeringState": "Connected",
+                            "remoteVirtualNetwork": {
+                                "id": "[parameters('virtualNetworks_Common_PoC_VN_id_1')]"
+                            },
+                            "allowVirtualNetworkAccess": true,
+                            "allowForwardedTraffic": false,
+                            "allowGatewayTransit": true,
+                            "useRemoteGateways": false,
+                            "remoteAddressSpace": {
+                                "addressPrefixes": [
+                                    "192.168.255.192/26"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "enableDdosProtection": false,
+                "enableVmProtection": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]",
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_cg_dev_ILB_Route_Table_name'))]",
+                "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourcegroups/common-poc-rg/providers/microsoft.operationalinsights/workspaces/cg-trial'.",
+            "type": "microsoft.operationalinsights/workspaces",
+            "name": "[parameters('workspaces_cg_trial_name')]",
+            "apiVersion": "2015-11-01-preview",
+            "location": "australiasoutheast",
+            "scale": null,
+            "properties": {
+                "source": "Azure",
+                "customerId": "b678c50a-3c57-46ac-adf4-407d10bb61a6",
+                "portalUrl": "[concat('https://seau.mms.microsoft.com/Account?tenant=a628da58-b099-463e-b9bd-4987cd45ed75&resource=%2fsubscriptions%2f90d7f61c-a9f8-4751-966c-c1870f7e73fc%2fresourcegroups%2fcommon-poc-rg%2fproviders%2fmicrosoft.operationalinsights%2fworkspaces%2f', parameters('workspaces_cg_trial_name'))]",
+                "provisioningState": "Succeeded",
+                "sku": {
+                    "name": "free"
+                },
+                "retentionInDays": 7
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Storage/storageAccounts/commonodiag'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_commonodiag_name')]",
+            "apiVersion": "2018-07-01",
+            "location": "southeastasia",
+            "tags": {
+                "Application": "Riverbed Steelhead CX 9.6.0",
+                "Created By": "Tharindu Nanayakkara- MIT",
+                "Created Date and Time": "17/10/2018 03:33 PM",
+                "Owner": "Jeffrey Perera",
+                "Project": "Azure PoC"
+            },
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/certificates/044903D3F0AC9D826830D51EB69CEFA1024D0B14_cg-dev-ILB_InternalLoadBalancingASE'.",
+            "type": "Microsoft.Web/certificates",
+            "name": "[parameters('certificates_044903D3F0AC9D826830D51EB69CEFA1024D0B14_cg_dev_ILB_InternalLoadBalancingASE_name')]",
+            "apiVersion": "2016-03-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "hostNames": [
+                    "*.dialog-cg",
+                    "*.scm.dialog-cg"
+                ],
+                "pfxBlob": null,
+                "password": null,
+                "cerBlob": null,
+                "serverFarmId": null
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/certificates/44F81D3B4AA83EA83B381D9CD13A40D0FD690AF9_cg-dev-ILB_InternalLoadBalancingASE'.",
+            "type": "Microsoft.Web/certificates",
+            "name": "[parameters('certificates_44F81D3B4AA83EA83B381D9CD13A40D0FD690AF9_cg_dev_ILB_InternalLoadBalancingASE_name')]",
+            "apiVersion": "2016-03-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "hostNames": [
+                    "*.dialog-cg",
+                    "*.scm.dialog-cg"
+                ],
+                "pfxBlob": null,
+                "password": null,
+                "cerBlob": null,
+                "serverFarmId": null
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/hostingEnvironments/cg-dev-ILB'.",
+            "type": "Microsoft.Web/hostingEnvironments",
+            "kind": "ASEV2",
+            "name": "[parameters('hostingEnvironments_cg_dev_ILB_name')]",
+            "apiVersion": "2016-09-01",
+            "location": "Southeast Asia",
+            "zones": [
+                null
+            ],
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "name": "[parameters('hostingEnvironments_cg_dev_ILB_name')]",
+                "location": "Southeast Asia",
+                "vnetName": "Common-PoC-VN",
+                "vnetResourceGroupName": "Common-PoC-RG",
+                "vnetSubnetName": "CG",
+                "virtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]",
+                    "subnet": "CG"
+                },
+                "internalLoadBalancingMode": "Web, Publishing",
+                "multiSize": "Standard_D1_V2",
+                "multiRoleCount": 2,
+                "workerPools": null,
+                "ipsslAddressCount": 0,
+                "dnsSuffix": "dialog-cg",
+                "networkAccessControlList": [],
+                "frontEndScaleFactor": 15,
+                "apiManagementAccountId": null,
+                "suspended": false,
+                "dynamicCacheEnabled": null,
+                "clusterSettings": [
+                    {
+                        "name": "DefaultSslCertificateThumbprint",
+                        "value": "44F81D3B4AA83EA83B381D9CD13A40D0FD690AF9"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/serverfarms/cg-dev-plan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "I1",
+                "tier": "Isolated",
+                "size": "I1",
+                "family": "I",
+                "capacity": 1
+            },
+            "kind": "linux",
+            "name": "[parameters('serverfarms_cg_dev_plan_name')]",
+            "apiVersion": "2016-09-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "name": "[parameters('serverfarms_cg_dev_plan_name')]",
+                "workerTierName": null,
+                "adminSiteName": null,
+                "hostingEnvironmentProfile": {
+                    "id": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+                },
+                "perSiteScaling": false,
+                "reserved": true,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/sites/dev'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "app,linux,container",
+            "name": "[parameters('sites_dev_name')]",
+            "apiVersion": "2016-08-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_dev_name'),'.dialog-cg')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_dev_name'),'.scm.dialog-cg')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_cg_dev_plan_name'))]",
+                "reserved": true,
+                "siteConfig": null,
+                "scmSiteAlsoStopped": false,
+                "hostingEnvironmentProfile": {
+                    "id": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+                },
+                "clientAffinityEnabled": true,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "cloningInfo": null,
+                "httpsOnly": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_cg_dev_plan_name'))]",
+                "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbound-management'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbound_management_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Used to manage ASE from public VIP",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "454-455",
+                "sourceAddressPrefix": "AppServiceManagement",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 100,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/ASE-internal-inbound'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_ASE_internal_inbound_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "[parameters('securityRules_ASE_internal_inbound_name')]",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "*",
+                "sourceAddressPrefix": "192.168.250.0/24",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 110,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbound-HTTP'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbound_HTTP_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow HTTP",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "8080",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 120,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbount-HTTPS'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbount_HTTPS_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow HTTPS",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 130,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [
+                    "443",
+                    "8080"
+                ],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": [],
+                "destinationPortRange": "[parameters('securityRules_Inbount_HTTPS_destinationPortRange')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbound-FTP'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbound_FTP_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow FTP over port 21",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "21",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 140,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbound-FTPS'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbound_FTPS_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow FTPS",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "990",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 150,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbound-FTP-Data'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbound_FTP_Data_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "RDP",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "10001-10020",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 160,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Inbound-Remote-Debugging'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Inbound_Remote_Debugging_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Visual Studio remote debugging",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "4016-4022",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 170,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-443'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_443_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Azure Storage blob",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "443",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 100,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-SMB'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_SMB_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Azure Storage queue",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "445",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 110,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-DB'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_DB_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Database",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "1433",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 120,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-DB2'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_DB2_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Database 2",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "11000-11999",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 130,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-DB3'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_DB3_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Database 3",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "14000-14999",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 140,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-DNS'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_DNS_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "DNS",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "53",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 150,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/ASE-internal-outbound'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_ASE_internal_outbound_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Azure Storage queue",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "*",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "192.168.250.0/24",
+                "access": "Allow",
+                "priority": 160,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/Outbound-80'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_Outbound_80_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Outbound 80",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "8080",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 170,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/cg-dev-ILB-NSG/securityRules/ASE-to-VNET'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'), '/', parameters('securityRules_ASE_to_VNET_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "ASE to VNET",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "*",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "192.168.250.0/23",
+                "access": "Allow",
+                "priority": 180,
+                "direction": "Outbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/http'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_http_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "80",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1010,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/https'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_https_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "443",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1020,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/rvbd1'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_rvbd1_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "7800",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1030,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/rvbd2'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_rvbd2_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "7810",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1040,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/rvbd3'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_rvbd3_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "7850",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1050,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/rvbd4'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_rvbd4_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "UDP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "7801",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1060,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/networkSecurityGroups/Riverbed-PoC-VM-01-NSG/securityRules/Allow_Port_22'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'), '/', parameters('securityRules_Allow_Port_22_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "22",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1070,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/routeTables/cg-dev-ILB-Route-Table/routes/cg-dev-ILB-route'.",
+            "type": "Microsoft.Network/routeTables/routes",
+            "name": "[concat(parameters('routeTables_cg_dev_ILB_Route_Table_name'), '/', parameters('routes_cg_dev_ILB_route_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "0.0.0.0/0",
+                "nextHopType": "Internet"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_cg_dev_ILB_Route_Table_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN/subnets/Servers'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_Common_PoC_VN_name'), '/', parameters('subnets_Servers_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "192.168.255.0/26",
+                "delegations": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN/subnets/GatewaySubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_Common_PoC_VN_name'), '/', parameters('subnets_GatewaySubnet_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "192.168.255.112/28",
+                "serviceEndpoints": [],
+                "delegations": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN/subnets/Riverbed'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_Common_PoC_VN_name'), '/', parameters('subnets_Riverbed_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "192.168.255.96/28",
+                "serviceEndpoints": [],
+                "delegations": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN/subnets/CG'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_Common_PoC_VN_name'), '/', parameters('subnets_CG_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "192.168.255.80/28",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]"
+                },
+                "routeTable": {
+                    "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_cg_dev_ILB_Route_Table_name'))]"
+                },
+                "resourceNavigationLinks": [
+                    {
+                        "name": "[concat('MicrosoftWeb_HostingEnvironments_cg-dev-ILB')]",
+                        "properties": {
+                            "linkedResourceType": "Microsoft.Web/hostingEnvironments",
+                            "link": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+                        }
+                    }
+                ],
+                "delegations": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_cg_dev_ILB_NSG_name'))]",
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_cg_dev_ILB_Route_Table_name'))]",
+                "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN/virtualNetworkPeerings/Spoke-CG-PoC-Peering'.",
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "name": "[concat(parameters('virtualNetworks_Common_PoC_VN_name'), '/', parameters('virtualNetworkPeerings_Spoke_CG_PoC_Peering_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "peeringState": "Connected",
+                "remoteVirtualNetwork": {
+                    "id": "[parameters('virtualNetworkPeerings_Spoke_CG_PoC_Peering_id')]"
+                },
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": true,
+                "useRemoteGateways": false,
+                "remoteAddressSpace": {
+                    "addressPrefixes": [
+                        "192.168.255.128/26"
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Network/virtualNetworks/Common-PoC-VN/virtualNetworkPeerings/Spoke-OneCRM-PoC-Peering'.",
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "name": "[concat(parameters('virtualNetworks_Common_PoC_VN_name'), '/', parameters('virtualNetworkPeerings_Spoke_OneCRM_PoC_Peering_name'))]",
+            "apiVersion": "2018-10-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "peeringState": "Connected",
+                "remoteVirtualNetwork": {
+                    "id": "[parameters('virtualNetworkPeerings_Spoke_OneCRM_PoC_Peering_id')]"
+                },
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": true,
+                "useRemoteGateways": false,
+                "remoteAddressSpace": {
+                    "addressPrefixes": [
+                        "192.168.255.192/26"
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_Common_PoC_VN_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AllEvents'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AllEvents_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Events",
+                "Category": "Log Management",
+                "Query": "Event | sort by TimeGenerated desc\r\n// Oql: Type=Event // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|EventsWithStartedinEventID'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|EventsWithStartedinEventID_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of Events containing the word \"started\" grouped by EventID",
+                "Category": "Log Management",
+                "Query": "search in (Event) \"started\" | summarize AggregatedValue = count() by EventID\r\n// Oql: Type=Event \"started\" | Measure count() by EventID // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|EventsByEventLog'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventLog_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of Events grouped by Event Log",
+                "Category": "Log Management",
+                "Query": "Event | summarize AggregatedValue = count() by EventLog\r\n// Oql: Type=Event | Measure count() by EventLog // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|EventsByEventSource'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventSource_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of Events grouped by Event Source",
+                "Category": "Log Management",
+                "Query": "Event | summarize AggregatedValue = count() by Source\r\n// Oql: Type=Event | Measure count() by Source // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|EventsByEventsID'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventsID_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of Events grouped by Event ID",
+                "Category": "Log Management",
+                "Query": "Event | summarize AggregatedValue = count() by EventID\r\n// Oql: Type=Event | Measure count() by EventID // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|WarningEvents'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|WarningEvents_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Events with level \"Warning\"",
+                "Category": "Log Management",
+                "Query": "Event | where EventLevelName == \"warning\" | sort by TimeGenerated desc\r\n// Oql: Type=Event EventLevelName=warning // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountOfWarningEvents'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountOfWarningEvents_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of Events with level \"Warning\" grouped by Event ID",
+                "Category": "Log Management",
+                "Query": "Event | where EventLevelName == \"warning\" | summarize AggregatedValue = count() by EventID\r\n// Oql: Type=Event EventLevelName=warning | Measure count() by EventID // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|NoOfConnectionsToOMSDKService'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|NoOfConnectionsToOMSDKService_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "How many connections to Operations Manager's SDK service by day",
+                "Category": "Log Management",
+                "Query": "Event | where EventID == 26328 and EventLog == \"Operations Manager\" | summarize AggregatedValue = count() by bin(TimeGenerated, 1d) | sort by TimeGenerated desc\r\n// Oql: Type=Event EventID=26328 EventLog=\"Operations Manager\" | Measure count() interval 1DAY // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|EventsInOMBetween2000to3000'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|EventsInOMBetween2000to3000_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Events in the Operations Manager Event Log whose Event ID is in the range between 2000 and 3000",
+                "Category": "Log Management",
+                "Query": "Event | where EventLog == \"Operations Manager\" and EventID >= 2000 and EventID <= 3000 | sort by TimeGenerated desc\r\n// Oql: Type=Event EventLog=\"Operations Manager\" EventID:[2000..3000] // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|ServerRestartTime'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|ServerRestartTime_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "When did my servers initiate restart?",
+                "Category": "Log Management",
+                "Query": "search in (Event) \"shutdown\" and EventLog == \"System\" and Source == \"User32\" and EventID == 1074 | sort by TimeGenerated desc | project TimeGenerated, Computer\r\n// Oql: shutdown Type=Event EventLog=System Source=User32 EventID=1074 | Select TimeGenerated,Computer // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|WindowsFireawallPolicySettingsChanged'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|WindowsFireawallPolicySettingsChanged_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Windows Firewall Policy settings have changed",
+                "Category": "Log Management",
+                "Query": "Event | where EventLog == \"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" and EventID == 2008 | sort by TimeGenerated desc\r\n// Oql: Type=Event EventLog=\"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" EventID=2008 // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "On which machines and how many times have Windows Firewall Policy settings changed",
+                "Category": "Log Management",
+                "Query": "Event | where EventLog == \"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" and EventID == 2008 | summarize AggregatedValue = count() by Computer | limit 500000\r\n// Oql: Type=Event EventLog=\"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" EventID=2008 | measure count() by Computer | top 500000 // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|ListAllIISLogEntries'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|ListAllIISLogEntries_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All IIS Log Entries",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | sort by TimeGenerated desc\r\n// Oql: Type=W3CIISLog // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|DisplayBreakdownRespondCodes'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|DisplayBreakdownRespondCodes_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Shows breakdown of response codes",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by scStatus\r\n// Oql: Type=W3CIISLog | Measure count() by scStatus // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|FindMaximumTimeTakenForEachPage'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|FindMaximumTimeTakenForEachPage_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Find the maximum time taken for each page",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = max(TimeTaken) by csUriStem\r\n// Oql: Type=W3CIISLog | Measure Max(TimeTaken) by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|Show404PagesList'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|Show404PagesList_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Shows which pages people are getting a 404 for",
+                "Category": "Log Management",
+                "Query": "search scStatus == 404 | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUriStem\r\n// Oql: Type=W3CIISLog scStatus=404 | Measure count() by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AverageHTTPRequestTimeHTTPMethod'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AverageHTTPRequestTimeHTTPMethod_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Average HTTP Request time by HTTP Method",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = avg(TimeTaken) by csMethod\r\n// Oql: Type=W3CIISLog | Measure Avg(TimeTaken) by csMethod // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|ShowServersThrowingInternalServerError'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|ShowServersThrowingInternalServerError_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Shows servers that are throwing internal server error",
+                "Category": "Log Management",
+                "Query": "search scStatus == 500 | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by sComputerName\r\n// Oql: Type=W3CIISLog scStatus=500 | Measure count() by sComputerName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountIISLogEntriesHTTPRequestMethod'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesHTTPRequestMethod_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of IIS Log Entries by HTTP Request Method",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csMethod\r\n// Oql: Type=W3CIISLog | Measure count() by csMethod // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountIISLogEntriesHTTPUserAgent'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesHTTPUserAgent_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of IIS Log Entries by HTTP User Agent",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUserAgent\r\n// Oql: Type=W3CIISLog | Measure count() by csUserAgent // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountIISLogEntriesClientIPAddress'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesClientIPAddress_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of IIS Log Entries by Client IP Address",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by cIP\r\n// Oql: Type=W3CIISLog | Measure count() by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|IISLogEntriesForClientIP'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|IISLogEntriesForClientIP_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "IIS Log Entries for a specific client IP Address (replace with your own)",
+                "Category": "Log Management",
+                "Query": "search cIP == \"192.168.0.1\" | extend Type = $table | where Type == W3CIISLog | sort by TimeGenerated desc | project csUriStem, scBytes, csBytes, TimeTaken, scStatus\r\n// Oql: Type=W3CIISLog cIP=\"192.168.0.1\" | Select csUriStem,scBytes,csBytes,TimeTaken,scStatus // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of IIS Log Entries by URL requested by client (without query strings)",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUriStem\r\n// Oql: Type=W3CIISLog | Measure count() by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of IIS Log Entries by Host requested by client",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csHost\r\n// Oql: Type=W3CIISLog | Measure count() by csHost // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|CountOfIISLogEntriesByURLForHost'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByURLForHost_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Count of IIS Log Entries by URL for the host \"www.contoso.com\" (replace with your own)",
+                "Category": "Log Management",
+                "Query": "search csHost == \"www.contoso.com\" | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUriStem\r\n// Oql: Type=W3CIISLog csHost=\"www.contoso.com\" | Measure count() by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|TotalBytesSentByClientIPAddress'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesSentByClientIPAddress_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Total Bytes sent by Client IP Address",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(csBytes) by cIP\r\n// Oql: Type=W3CIISLog | Measure Sum(csBytes) by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Total Bytes received by each Azure Role Instance",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(csBytes) by RoleInstance\r\n// Oql: Type=W3CIISLog | Measure Sum(csBytes) by RoleInstance // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|TotalBytesReceivedByEachIISComputer'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesReceivedByEachIISComputer_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Total Bytes received by each IIS Computer",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(csBytes) by Computer | limit 500000\r\n// Oql: Type=W3CIISLog | Measure Sum(csBytes) by Computer | top 500000 // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Total Bytes responded back to clients by each IIS ServerIP Address",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(scBytes) by sIP\r\n// Oql: Type=W3CIISLog | Measure Sum(scBytes) by sIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Total Bytes responded back to clients by Client IP Address",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(scBytes) by cIP\r\n// Oql: Type=W3CIISLog | Measure Sum(scBytes) by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AverageHTTPRequestTimeByClientIPAddress'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AverageHTTPRequestTimeByClientIPAddress_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Average HTTP Request time by Client IP Address",
+                "Category": "Log Management",
+                "Query": "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = avg(TimeTaken) by cIP\r\n// Oql: Type=W3CIISLog | Measure Avg(TimeTaken) by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AllSyslog'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslog_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Syslogs",
+                "Category": "Log Management",
+                "Query": "Syslog | sort by TimeGenerated desc\r\n// Oql: Type=Syslog // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AllSyslogsWithErrors'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogsWithErrors_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Syslog Records with Errors",
+                "Category": "Log Management",
+                "Query": "Syslog | where SeverityLevel == \"error\" | sort by TimeGenerated desc\r\n// Oql: Type=Syslog SeverityLevel=error // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AllSyslogByFacility'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogByFacility_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Syslog Records grouped by Facility",
+                "Category": "Log Management",
+                "Query": "Syslog | summarize AggregatedValue = count() by Facility\r\n// Oql: Type=Syslog | Measure count() by Facility // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_LogManagement|AllSyslogByProcessName'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogByProcessName_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Syslog Records grouped by ProcessName",
+                "Category": "Log Management",
+                "Query": "Syslog | summarize AggregatedValue = count() by ProcessName\r\n// Oql: Type=Syslog | Measure count() by ProcessName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_General|dataPointsPerManagementGroup'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_General|dataPointsPerManagementGroup_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Which Management Group is generating the most data points?",
+                "Category": "General Exploration",
+                "Query": "search * | summarize AggregatedValue = count() by ManagementGroupName\r\n// Oql: * | Measure count() by ManagementGroupName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_General|dataTypeDistribution'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_General|dataTypeDistribution_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Distribution of data Types",
+                "Category": "General Exploration",
+                "Query": "search * | extend Type = $table | summarize AggregatedValue = count() by Type\r\n// Oql: * | Measure count() by Type // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_General|AlphabeticallySortedComputers'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_General|AlphabeticallySortedComputers_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "All Computers with their most recent data",
+                "Category": "General Exploration",
+                "Query": "search not(ObjectName == \"Advisor Metrics\" or ObjectName == \"ManagedSpace\") | summarize AggregatedValue = max(TimeGenerated) by Computer | limit 500000 | sort by Computer asc\r\n// Oql: NOT(ObjectName=\"Advisor Metrics\" OR ObjectName=ManagedSpace) | measure max(TimeGenerated) by Computer | top 500000 | Sort Computer // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: 'subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.OperationalInsights/workspaces/cg-trial/savedSearches/LogManagement(cg-trial)_General|StaleComputers'.",
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "name": "[concat(parameters('workspaces_cg_trial_name'), '/', parameters('savedSearches_LogManagement(cg_trial)_General|StaleComputers_name'))]",
+            "apiVersion": "2015-03-20",
+            "scale": null,
+            "properties": {
+                "DisplayName": "Stale Computers (data older than 24 hours)",
+                "Category": "General Exploration",
+                "Query": "search not(ObjectName == \"Advisor Metrics\" or ObjectName == \"ManagedSpace\") | summarize lastdata = max(TimeGenerated) by Computer | limit 500000 | where lastdata < ago(24h)\r\n// Oql: NOT(ObjectName=\"Advisor Metrics\" OR ObjectName=ManagedSpace) | measure max(TimeGenerated) as lastdata by Computer | top 500000 | where lastdata < NOW-24HOURS // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+                "Version": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/hostingEnvironments/cg-dev-ILB/multiRolePools/default'.",
+            "type": "Microsoft.Web/hostingEnvironments/multiRolePools",
+            "sku": {
+                "name": "Q1",
+                "tier": "Quantum",
+                "size": "Q1",
+                "family": "Q",
+                "capacity": 2
+            },
+            "name": "[concat(parameters('hostingEnvironments_cg_dev_ILB_name'), '/', parameters('multiRolePools_default_name'))]",
+            "apiVersion": "2016-09-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "workerSize": "Standard_D1_V2",
+                "workerCount": 2,
+                "instanceNames": [
+                    "192.168.255.89",
+                    "192.168.255.88"
+                ],
+                "mdmId": "waws-prod-sg1-7ce8d8f8_MultiRole"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/hostingEnvironments', parameters('hostingEnvironments_cg_dev_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/sites/dev/config/web'.",
+            "type": "Microsoft.Web/sites/config",
+            "name": "[concat(parameters('sites_dev_name'), '/', parameters('config_web_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "DOCKER|cgwsacr.azurecr.io/cg-ws:t01",
+                "windowsFxVersion": null,
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2017",
+                "httpLoggingEnabled": true,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$dev",
+                "publishingPassword": null,
+                "appSettings": null,
+                "azureStorageAccounts": {},
+                "metadata": null,
+                "connectionStrings": null,
+                "machineKey": null,
+                "handlerMappings": null,
+                "documentRoot": null,
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "javaVersion": null,
+                "javaContainer": null,
+                "javaContainerVersion": null,
+                "appCommandLine": "",
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "runtimeADUser": null,
+                "runtimeADUserPassword": null,
+                "loadBalancing": "LeastRequests",
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "limits": null,
+                "autoHealEnabled": false,
+                "autoHealRules": null,
+                "tracingOptions": null,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "clientSecretCertificateThumbprint": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "cors": null,
+                "push": null,
+                "apiDefinition": null,
+                "autoSwapSlotName": null,
+                "localMySqlEnabled": false,
+                "managedServiceIdentityId": null,
+                "xManagedServiceIdentityId": null,
+                "ipSecurityRestrictions": null,
+                "scmIpSecurityRestrictions": null,
+                "scmIpSecurityRestrictionsUseMain": null,
+                "http20Enabled": false,
+                "minTlsVersion": "1.0",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_dev_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/90d7f61c-a9f8-4751-966c-c1870f7e73fc/resourceGroups/Common-PoC-RG/providers/Microsoft.Web/sites/dev/hostNameBindings/dev.dialog-cg'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_dev_name'), '/', parameters('hostNameBindings_dev.dialog_cg_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "siteName": "dev",
+                "domainId": null,
+                "hostNameType": "Verified"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_dev_name'))]"
+            ]
+        }
+    ]
+}

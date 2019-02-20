@@ -1,0 +1,312 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "connections_Dialog_Azure_PoC_VPN_Connection_location": {
+            "value": null
+        },
+        "connections_Dialog_Azure_PoC_VPN_Connection_location_1": {
+            "value": null
+        },
+        "networkSecurityGroups_cg_dev_ILB_NSG_destinationPortRange": {
+            "value": null
+        },
+        "securityRules_Inbount_HTTPS_destinationPortRange": {
+            "value": null
+        },
+        "sites_dev_name": {
+            "value": null
+        },
+        "config_web_name": {
+            "value": null
+        },
+        "serverfarms_cg_dev_plan_name": {
+            "value": null
+        },
+        "hostingEnvironments_cg_dev_ILB_name": {
+            "value": null
+        },
+        "storageAccounts_commonodiag_name": {
+            "value": null
+        },
+        "virtualNetworks_Common_PoC_VN_name": {
+            "value": null
+        },
+        "workspaces_cg_trial_name": {
+            "value": null
+        },
+        "virtualMachines_Riverbed_PoC_VM_01_name": {
+            "value": null
+        },
+        "routeTables_cg_dev_ILB_Route_Table_name": {
+            "value": null
+        },
+        "networkSecurityGroups_cg_dev_ILB_NSG_name": {
+            "value": null
+        },
+        "hostNameBindings_dev.dialog_cg_name": {
+            "value": null
+        },
+        "publicIPAddresses_Common_PoC_VNGW_PIP_name": {
+            "value": null
+        },
+        "virtualNetworkGateways_Common_PoC_VNGW_name": {
+            "value": null
+        },
+        "networkInterfaces_riverbed_poc_vm_01894_name": {
+            "value": null
+        },
+        "publicIPAddresses_Riverbed_PoC_VM_01_PIP_name": {
+            "value": null
+        },
+        "subnets_CG_name": {
+            "value": null
+        },
+        "connections_Dialog_Azure_PoC_VPN_Connection_name": {
+            "value": null
+        },
+        "localNetworkGateways_Dialog_Common_PoC_LNGW_name": {
+            "value": null
+        },
+        "networkSecurityGroups_Riverbed_PoC_VM_01_NSG_name": {
+            "value": null
+        },
+        "subnets_Servers_name": {
+            "value": null
+        },
+        "subnets_Riverbed_name": {
+            "value": null
+        },
+        "multiRolePools_default_name": {
+            "value": null
+        },
+        "schedules_shutdown_computevm_riverbed_poc_vm_01_name": {
+            "value": null
+        },
+        "subnets_GatewaySubnet_name": {
+            "value": null
+        },
+        "routes_cg_dev_ILB_route_name": {
+            "value": null
+        },
+        "securityRules_Inbound_FTP_name": {
+            "value": null
+        },
+        "securityRules_Outbound_DB_name": {
+            "value": null
+        },
+        "securityRules_Outbound_80_name": {
+            "value": null
+        },
+        "securityRules_ASE_to_VNET_name": {
+            "value": null
+        },
+        "securityRules_Inbound_HTTP_name": {
+            "value": null
+        },
+        "securityRules_Inbound_FTPS_name": {
+            "value": null
+        },
+        "securityRules_Outbound_443_name": {
+            "value": null
+        },
+        "securityRules_Outbound_SMB_name": {
+            "value": null
+        },
+        "securityRules_Outbound_DB2_name": {
+            "value": null
+        },
+        "securityRules_Outbound_DB3_name": {
+            "value": null
+        },
+        "securityRules_Outbound_DNS_name": {
+            "value": null
+        },
+        "securityRules_http_name": {
+            "value": null
+        },
+        "securityRules_Inbount_HTTPS_name": {
+            "value": null
+        },
+        "securityRules_https_name": {
+            "value": null
+        },
+        "securityRules_rvbd1_name": {
+            "value": null
+        },
+        "securityRules_rvbd2_name": {
+            "value": null
+        },
+        "securityRules_rvbd3_name": {
+            "value": null
+        },
+        "securityRules_rvbd4_name": {
+            "value": null
+        },
+        "securityRules_Inbound_FTP_Data_name": {
+            "value": null
+        },
+        "securityRules_Inbound_management_name": {
+            "value": null
+        },
+        "securityRules_ASE_internal_inbound_name": {
+            "value": null
+        },
+        "securityRules_ASE_internal_outbound_name": {
+            "value": null
+        },
+        "securityRules_Allow_Port_22_name": {
+            "value": null
+        },
+        "virtualNetworkPeerings_Spoke_CG_PoC_Peering_name": {
+            "value": null
+        },
+        "securityRules_Inbound_Remote_Debugging_name": {
+            "value": null
+        },
+        "virtualNetworkPeerings_Spoke_OneCRM_PoC_Peering_name": {
+            "value": null
+        },
+        "certificates_044903D3F0AC9D826830D51EB69CEFA1024D0B14_cg_dev_ILB_InternalLoadBalancingASE_name": {
+            "value": null
+        },
+        "certificates_44F81D3B4AA83EA83B381D9CD13A40D0FD690AF9_cg_dev_ILB_InternalLoadBalancingASE_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_General|StaleComputers_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllEvents_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslog_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|WarningEvents_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_General|dataTypeDistribution_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventLog_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventsID_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|Show404PagesList_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|ServerRestartTime_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsByEventSource_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogByFacility_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfWarningEvents_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|ListAllIISLogEntries_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogsWithErrors_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AllSyslogByProcessName_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_General|dataPointsPerManagementGroup_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_General|AlphabeticallySortedComputers_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|IISLogEntriesForClientIP_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsWithStartedinEventID_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|EventsInOMBetween2000to3000_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|DisplayBreakdownRespondCodes_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|NoOfConnectionsToOMSDKService_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|FindMaximumTimeTakenForEachPage_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesHTTPUserAgent_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesSentByClientIPAddress_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AverageHTTPRequestTimeHTTPMethod_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByURLForHost_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesClientIPAddress_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountIISLogEntriesHTTPRequestMethod_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesReceivedByEachIISComputer_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|WindowsFireawallPolicySettingsChanged_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|ShowServersThrowingInternalServerError_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|AverageHTTPRequestTimeByClientIPAddress_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines_name": {
+            "value": null
+        },
+        "savedSearches_LogManagement(cg_trial)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress_name": {
+            "value": null
+        },
+        "virtualMachines_Riverbed_PoC_VM_01_id": {
+            "value": null
+        },
+        "virtualMachines_Riverbed_PoC_VM_01_id_1": {
+            "value": null
+        },
+        "virtualNetworks_Common_PoC_VN_id": {
+            "value": null
+        },
+        "virtualNetworks_Common_PoC_VN_id_1": {
+            "value": null
+        },
+        "virtualNetworkPeerings_Spoke_CG_PoC_Peering_id": {
+            "value": null
+        },
+        "virtualNetworkPeerings_Spoke_OneCRM_PoC_Peering_id": {
+            "value": null
+        }
+    }
+}
